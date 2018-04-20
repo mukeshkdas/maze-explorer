@@ -1,4 +1,4 @@
-pipeline {
+//pipeline {
     //agent any
 
     //tools {
@@ -7,7 +7,7 @@ pipeline {
         
     //}
 node ("TestMachine-ut") {
-    stages {        
+    //stages {        
         stage('install and sonar parallel') {
             steps {
                 parallel(
@@ -32,5 +32,5 @@ node ("TestMachine-ut") {
             }
         }
     }
-    }
-}	
+    //}
+//}	
