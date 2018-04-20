@@ -1,5 +1,6 @@
 pipeline {
-    agent master
+    node("master")
+{
 
     tools {
         jdk 'jdk8'
@@ -31,4 +32,5 @@ pipeline {
             }
         }
     }
+}
 }
