@@ -1,5 +1,5 @@
 pipeline {
-    agent 'TestMachine-ut'
+    agent any
 
     tools {
         maven 'maven3'
@@ -8,6 +8,7 @@ pipeline {
     }
 
     stages {
+        node ("TestMachine-ut") {
         stage('install and sonar parallel') {
             steps {
                 parallel(
@@ -31,5 +32,6 @@ pipeline {
                 sh "mvn deploy -DskipTests -Dartifactory_url=http://159.65.148.210:8081/artifactory"
             }
         }
+    }
     }
 }	
