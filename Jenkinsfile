@@ -1,19 +1,21 @@
+pipeline {
+    agent any
 
-    node("master")
-{
-
-def W_M2_HOME = tool 'maven3'
+    tools {
+        maven 'maven3'
+        jdk 'jdk8'
+        
+    }
 
     stages {
         stage('install and sonar parallel') {
             steps {
-                
                 parallel(
                         install: {
-                            sh "${W_M2_HOME}/bin/mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml"
+                            sh "mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml"
                         },
                         sonar: {
-                            sh "${W_M2_HOME}/bin/mvn sonar:sonar -Dsonar.host.url==http://sonarqube:9000"
+                            sh "mvn sonar:sonar -Dsonar.host.url=${env.SONARQUBE_HOST}"
                         }
                 )
             }
@@ -26,9 +28,8 @@ def W_M2_HOME = tool 'maven3'
         }
         stage('deploy') {
             steps {
-                sh "${W_M2_HOME}/bin/mvn deploy -DskipTests -Dartifactory_url=http://159.65.148.210:8081/artifactory"
+                sh "mvn deploy -DskipTests -Dartifactory_url=${env.ARTIFACTORY_URL}"
             }
         }
     }
-}
-
+}	
