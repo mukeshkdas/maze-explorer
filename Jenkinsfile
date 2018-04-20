@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent 'TestMachine-ut'
 
     tools {
         maven 'maven3'
