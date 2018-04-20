@@ -1,13 +1,12 @@
-node ("TestMachine-ut") {
 pipeline {
-    agent any
+    //agent any
 
-    tools {
-        maven 'maven3'
+    //tools {
+      //  maven 'maven3'
         // jdk 'jdk8'
         
-    }
-
+    //}
+node ("TestMachine-ut") {
     stages {        
         stage('install and sonar parallel') {
             steps {
