@@ -1,3 +1,4 @@
+node ("TestMachine-ut") {
 pipeline {
     agent any
 
@@ -7,8 +8,7 @@ pipeline {
         
     }
 
-    stages {
-        node ("TestMachine-ut") {
+    stages {        
         stage('install and sonar parallel') {
             steps {
                 parallel(
