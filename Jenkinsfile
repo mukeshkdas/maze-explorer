@@ -9,7 +9,7 @@
 node ("TestMachine-ut") {
     //stages {        
         stage('install and sonar parallel') {
-            steps {
+            //steps {
                 parallel(
                         install: {
                             sh "mvn -U clean test cobertura:cobertura -Dcobertura.report.format=xml"
@@ -17,14 +17,16 @@ node ("TestMachine-ut") {
                         sonar: {
                             sh "mvn sonar:sonar -Dsonar.host.url=http://139.59.90.202:9000"
                         }
-                )
-            }
-            post {
+                ),
+                failFast: true
+
+            //}
+            //post {
                 always {
                     junit '**/target/*-reports/TEST-*.xml'
                     step([$class: 'CoberturaPublisher', coberturaReportFile: 'target/site/cobertura/coverage.xml'])
                 }
-            }
+            //}
         }
         stage('deploy') {
             steps {
