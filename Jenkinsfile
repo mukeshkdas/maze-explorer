@@ -1,4 +1,4 @@
-pipeline {
+
     node("master")
 {
 
@@ -33,4 +33,4 @@ pipeline {
         }
     }
 }
-}
+
