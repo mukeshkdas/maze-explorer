@@ -17,8 +17,7 @@ node ("TestMachine-ut") {
                         sonar: {
                             sh "mvn sonar:sonar -Dsonar.host.url=http://139.59.90.202:9000"
                         }
-                ),
-                failFast: true
+                )
 
             //}
             //post {
